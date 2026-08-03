@@ -18,8 +18,12 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 });
 
 // DB Context
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")
+    ?? throw new InvalidOperationException("No connection string configured");
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(connectionString));
 
 // Identity
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
