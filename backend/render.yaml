@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: gift-delivery-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/products
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__DefaultConnection
+        fromDatabase:
+          name: gift-db
+          property: connectionString
+      - key: JwtSettings__Secret
+        generateValue: true
+      - key: JwtSettings__Issuer
+        value: GiftDeliveryApi
+      - key: JwtSettings__Audience
+        value: GiftDeliveryClients
+      - key: JwtSettings__ExpirationInMinutes
+        value: 60
+      - key: Stripe__SecretKey
+        sync: false
+      - key: Stripe__PublishableKey
+        sync: false
+      - key: AdminSetup__Email
+        value: superadmin@giftdelivery.com
+      - key: AdminSetup__Password
+        generateValue: true
+      - key: AdminSetup__FirstName
+        value: Super
+      - key: AdminSetup__LastName
+        value: Admin
+
+  - type: postgresql
+    name: gift-db
+    plan: free
+    databaseName: GiftDeliveryDb
+    ipAllowList: []
