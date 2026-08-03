@@ -11,11 +11,13 @@ using DotNetEnv;
 
 try { Env.Load(); } catch { /* .env not required in production */ }
 
-var builder = WebApplication.CreateBuilder(new WebApplicationOptions
-{
-    Args = args,
-    WebRootPath = "wwwroot"
-});
+var builder = WebApplication.CreateBuilder(args);
+
+// Disable file watching on Render free tier (inotify limit)
+builder.Configuration.Sources.Clear();
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: false);
+builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: false);
+builder.Configuration.AddEnvironmentVariables();
 
 // DB Context
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
