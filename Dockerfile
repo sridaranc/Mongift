@@ -1,14 +1,13 @@
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
 WORKDIR /src
 
-COPY ["backend/GiftDelivery.Api.csproj", "./backend/"]
-RUN dotnet restore "backend/GiftDelivery.Api.csproj"
+COPY backend/GiftDelivery.Api.csproj ./backend/
+RUN dotnet restore backend/GiftDelivery.Api.csproj
 
 COPY backend/ ./backend/
-RUN dotnet build "backend/GiftDelivery.Api.csproj" -c Release -o /app/build
-RUN dotnet publish "backend/GiftDelivery.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish backend/GiftDelivery.Api.csproj -c Release -o /app/publish --no-restore
 
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 
