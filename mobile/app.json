@@ -4,7 +4,7 @@
     "slug": "mon-gift-delivery",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/mobile-app.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "extra": {
@@ -13,7 +13,7 @@
       }
     },
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/mobile-app.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -28,7 +28,7 @@
     "android": {
       "package": "com.sridaran.mongiftdelivery",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/mobile-app.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
