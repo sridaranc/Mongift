@@ -9,7 +9,7 @@
     "newArchEnabled": true,
     "extra": {
       "eas": {
-        "projectId": "your-eas-project-id"
+        "projectId": "4836ca1e-7a7f-451f-9ffb-800d0af717b5"
       }
     },
     "splash": {
@@ -26,6 +26,7 @@
       }
     },
     "android": {
+      "package": "com.sridaran.mongiftdelivery",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -35,6 +36,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "owner": "sridaran"
   }
 }
