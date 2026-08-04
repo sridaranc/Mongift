@@ -27,7 +27,7 @@ export interface Category {
 export interface Product {
   id: string;
   name: string;
-  description: string;
+  description?: string;
   price: number;
   stockQuantity: number;
   imageUrl: string;
@@ -72,4 +72,14 @@ export interface OrderResponse {
   status: string;
   orderDate: string;
   items: { productName: string; unitPrice: number; quantity: number; subtotal: number }[];
+}
+
+export interface User {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber?: string;
+  pincode?: string;
+  isActive: boolean;
 }
